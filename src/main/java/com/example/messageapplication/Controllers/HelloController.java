@@ -1,4 +1,4 @@
-package com.example.messageapplication;
+package com.example.messageapplication.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
