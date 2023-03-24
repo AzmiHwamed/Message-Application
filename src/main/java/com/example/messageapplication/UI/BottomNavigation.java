@@ -19,9 +19,9 @@ public class BottomNavigation extends HBox {
         this.setAlignment(Pos.CENTER);
         this.setSpacing(300);
         this.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, new CornerRadii(0), Insets.EMPTY)));
-        Image image1 = new Image("C:\\Users\\ASUS\\IdeaProjects\\Message-Application\\src\\main\\resources\\comments (1).png");
-        Image image2 = new Image("C:\\Users\\ASUS\\IdeaProjects\\Message-Application\\src\\main\\resources\\friend-request.png");
-        Image image3 = new Image("C:\\Users\\ASUS\\IdeaProjects\\Message-Application\\src\\main\\resources\\users.png");
+        Image image1 = new Image("C:\\Users\\ASUS\\Downloads\\Sans titre (8).png");
+        Image image2 = new Image("C:\\Users\\ASUS\\Downloads\\Sans titre (8).png");
+        Image image3 = new Image("C:\\Users\\ASUS\\Downloads\\Sans titre (8).png");
         imageView1 = new ImageView(image1);
         imageView2 = new ImageView(image2);
         imageView3 = new ImageView(image3);
