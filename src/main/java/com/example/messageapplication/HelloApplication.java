@@ -1,8 +1,8 @@
 package com.example.messageapplication;
 
+import com.example.messageapplication.Navigator.Navigator;
+import com.example.messageapplication.UI.SignInScene;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -10,10 +10,9 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 330, 240);
-        stage.setTitle("Hello!");
-        stage.setScene(scene);
+        Navigator.getInstance().setStage(stage);
+        Navigator.getInstance().addScene("scene",new SignInScene());
+        Navigator.getInstance().showScene("scene");
         stage.show();
     }
 

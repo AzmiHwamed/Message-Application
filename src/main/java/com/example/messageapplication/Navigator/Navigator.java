@@ -1,5 +1,6 @@
 package com.example.messageapplication.Navigator;
 
+import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 

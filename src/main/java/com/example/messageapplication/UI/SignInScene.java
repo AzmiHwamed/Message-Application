@@ -1,4 +1,10 @@
 package com.example.messageapplication.UI;
 
-public class SignInScene {
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+
+public class SignInScene extends Scene {
+    public SignInScene() {
+        super(new SignInParent());
+    }
 }
