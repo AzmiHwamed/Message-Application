@@ -3,6 +3,7 @@ package com.example.messageapplication.UI;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -31,6 +32,10 @@ public class BottomNavigation extends HBox {
         imageView2.setFitHeight(40);
         imageView3.setFitWidth(40);
         imageView3.setFitHeight(40);
+        imageView1.setCursor(Cursor.HAND);
+        imageView2.setCursor(Cursor.HAND);
+        imageView3.setCursor(Cursor.HAND);
+
         this.getChildren().addAll(imageView1, imageView2, imageView3);
         this.setHeight(100);
         this.setWidth(1000);
