@@ -1,5 +1,6 @@
 package com.example.messageapplication.UI;
 
+import com.example.messageapplication.Controllers.SignInController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -38,10 +39,11 @@ public VBox btn_box;
         sign_in.setSpacing(100);
         sign_in.setAlignment(Pos.TOP_CENTER);
         signin=new Button("Sign In");
+        signin.setOnAction(new SignInController(this));
         signin.setPrefSize(1028,30);
        signin.setStyle("-fx-background-color: #6087EB; -fx-text-fill: white;");
         signin.prefWidthProperty().bind(sign_in.widthProperty());
-        im_logo=new Image("plogo.png");
+        im_logo=new Image("C:\\Users\\ASUS\\IdeaProjects\\Message-Application\\src\\main\\resources\\plogo.png");
         logo=new ImageView(im_logo);
         logo.setFitHeight(100);
         logo.setFitWidth(300);

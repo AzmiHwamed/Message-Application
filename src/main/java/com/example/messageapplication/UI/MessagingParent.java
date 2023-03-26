@@ -1,6 +1,12 @@
 package com.example.messageapplication.UI;
 
+import com.example.messageapplication.Controllers.MessagingController;
+import com.example.messageapplication.Models.CurrentChatBuddy;
+import com.example.messageapplication.Models.CurrentUser;
 import com.example.messageapplication.Models.User;
+import com.example.messageapplication.Server.Client;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.control.ScrollPane;
@@ -8,27 +14,38 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
+import java.net.Socket;
+import java.sql.SQLException;
+import java.util.Scanner;
+
 public class MessagingParent extends BorderPane {
     BorderPane listOfFriends;
     public ImageView SearchBtn;
+    public Client client;
     HBox searchHeader;
     TextField SearchBar;
-    VBox listOfFriendsContent;
+    public VBox listOfFriendsContent;
     BorderPane CoreMessaging;
+    public ScrollPane x;
     HBox MessagingHeader;
-    VBox MessagingMain;
+    public VBox MessagingMain;
     GridPane SendBar;
-    Text UserName;
+    public Text UserName;
     TextField MessageTextField;
     ImageView Send;
+    public static MessagingParent obj;
 
-    public MessagingParent() {
+    public MessagingParent() throws IOException, SQLException {
+        obj=this;
+
         Image image1 = new Image("C:\\Users\\ASUS\\IdeaProjects\\Message-Application\\src\\main\\resources\\send.png");
         listOfFriends=new BorderPane();
         searchHeader=new HBox();
@@ -63,28 +80,35 @@ public class MessagingParent extends BorderPane {
         SendBar.add(Send,2,0,1,1);
         SendBar.setMinWidth(500);
         CoreMessaging.setTop(MessagingHeader);
-        ScrollPane x =new ScrollPane(MessagingMain);
+        x=new ScrollPane(MessagingMain);
         x.setFitToWidth(true);
         CoreMessaging.setCenter(x);
-
+        Send.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                client.sendMessage(Integer.toString(CurrentChatBuddy.GetCurrentUser().getId()),MessageTextField.getText());
+            }
+        });
         MessagingMain.setPrefWidth(600);
         MessagingMain.setSpacing(10);
         CoreMessaging.setBottom(SendBar);
         this.setCenter(new SplitPane(listOfFriends,CoreMessaging));
         this.setBottom(new BottomNavigation());
         this.setPrefSize(1000,700);
-        for(int i =0;i<20;i++){
-            MessagingMain.getChildren().add(new MyMessage("hello"));
-            MessagingMain.getChildren().add(new IncomingMessage("hello"));
-        }
-        for(int i =0;i<20;i++){
-            listOfFriendsContent.getChildren().add(new FirendUI("Rihem"));
-        }
 
 
 
 
 
+
+
+
+    }
+    public void call() throws SQLException, IOException {
+        new MessagingController(obj).onCreate();
+        Socket socket=new Socket("localhost",1234);
+        client =new Client(socket, Integer.toString(CurrentUser.GetCurrentUser().getId()),this);
+        client.ListenForMessage();
 
     }
 }
