@@ -73,8 +73,10 @@ public class Client {
                         Platform.runLater(new Runnable() {
                             @Override
                             public void run() {
-                                mp.MessagingMain.getChildren().add(new IncomingMessage(finalMsgFromGroupCHat.message));
-                                mp.x.setVvalue(1.0);
+                                if(finalMsgFromGroupCHat.Sender.equals(Integer.toString(CurrentChatBuddy.GetCurrentUser().getId()))){
+                                    mp.MessagingMain.getChildren().add(new IncomingMessage(finalMsgFromGroupCHat.message));
+                                    mp.x.setVvalue(1.0);
+                                }
                             }
                         });
                         if(msgFromGroupCHat==null)

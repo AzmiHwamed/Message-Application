@@ -1,11 +1,17 @@
 package com.example.messageapplication.Server;
 
+import com.example.messageapplication.DAO.DAO;
 import com.example.messageapplication.Models.Message;
 
 import java.io.IOException;
+
+import com.example.messageapplication.Translator.Translator;
+import com.google.api.GoogleAPIException;
+
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ClientHandler implements Runnable{
@@ -43,15 +49,25 @@ public class ClientHandler implements Runnable{
         }
 
     }
-    public void brodcastMessage(Message messageToSend){
+    public void brodcastMessage(Message messageToSend)  {
         for(ClientHandler clientHandler:clientHandlers){
             try{
                 if(clientHandler.ClientUserName.equals(messageToSend.Reciever)){
+                    messageToSend.message=Translator.translate(DAO.getInstance().GetUserById(Integer.parseInt(messageToSend.Sender)).getLang(),DAO.getInstance().GetUserById(Integer.parseInt(messageToSend.Reciever)).getLang(),messageToSend.message);
+                    System.out.println("Translated : "+messageToSend.message);
                     clientHandler.bufferedWriter.writeObject(messageToSend);
-                    clientHandler.bufferedWriter.flush();}
+                    clientHandler.bufferedWriter.flush();
+
+                }
 
             }catch (IOException e){
                 closeEverything(socket,bufferedReader,bufferedWriter);
+            } catch (GoogleAPIException e) {
+                throw new RuntimeException(e);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
         }
     }

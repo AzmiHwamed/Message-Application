@@ -106,7 +106,7 @@ public class MessagingParent extends BorderPane {
     }
     public void call() throws SQLException, IOException {
         new MessagingController(obj).onCreate();
-        Socket socket=new Socket("localhost",1234);
+        Socket socket=new Socket("localhost",1235);
         client =new Client(socket, Integer.toString(CurrentUser.GetCurrentUser().getId()),this);
         client.ListenForMessage();
 
