@@ -1,0 +1,106 @@
+Index: src/main/java/com/example/messageapplication/HelloApplication.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.messageapplication;\r\n\r\nimport com.example.messageapplication.Navigator.Navigator;\r\nimport com.example.messageapplication.UI.SignInScene;\r\nimport javafx.application.Application;\r\nimport javafx.stage.Stage;\r\n\r\nimport java.io.IOException;\r\n\r\npublic class HelloApplication extends Application {\r\n    @Override\r\n    public void start(Stage stage) throws IOException {\r\n        Navigator.getInstance().setStage(stage);\r\n        Navigator.getInstance().addScene(\"scene\",new SignInScene());\r\n        Navigator.getInstance().showScene(\"scene\");\r\n        stage.show();\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        launch();\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/messageapplication/HelloApplication.java b/src/main/java/com/example/messageapplication/HelloApplication.java
+--- a/src/main/java/com/example/messageapplication/HelloApplication.java	(revision ebde3e700272480091f0018ad8bf87695bf5fe6a)
++++ b/src/main/java/com/example/messageapplication/HelloApplication.java	(date 1679825699676)
+@@ -1,7 +1,9 @@
+ package com.example.messageapplication;
+ 
+ import com.example.messageapplication.Navigator.Navigator;
++import com.example.messageapplication.UI.ReqParentScene;
+ import com.example.messageapplication.UI.SignInScene;
++import com.example.messageapplication.UI.SignUpScene;
+ import javafx.application.Application;
+ import javafx.stage.Stage;
+ 
+@@ -11,7 +13,7 @@
+     @Override
+     public void start(Stage stage) throws IOException {
+         Navigator.getInstance().setStage(stage);
+-        Navigator.getInstance().addScene("scene",new SignInScene());
++        Navigator.getInstance().addScene("scene",new ReqParentScene());
+         Navigator.getInstance().showScene("scene");
+         stage.show();
+     }
+Index: src/main/java/com/example/messageapplication/UI/BottomNavigation.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.messageapplication.UI;\r\n\r\n\r\nimport javafx.geometry.Insets;\r\nimport javafx.geometry.Pos;\r\nimport javafx.scene.image.Image;\r\nimport javafx.scene.image.ImageView;\r\nimport javafx.scene.layout.*;\r\nimport javafx.scene.paint.Color;\r\n\r\npublic class BottomNavigation extends HBox {\r\n    public ImageView imageView1;\r\n    public ImageView imageView2;\r\n    public ImageView imageView3;\r\n    public BottomNavigation() {\r\n\r\n\r\n        this.setPadding(new Insets(10));\r\n        this.setAlignment(Pos.CENTER);\r\n        this.setSpacing(300);\r\n        this.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, new CornerRadii(0), Insets.EMPTY)));\r\n        Image image1 = new Image(\"C:\\\\Users\\\\ASUS\\\\Downloads\\\\Sans titre (8).png\");\r\n        Image image2 = new Image(\"C:\\\\Users\\\\ASUS\\\\Downloads\\\\Sans titre (8).png\");\r\n        Image image3 = new Image(\"C:\\\\Users\\\\ASUS\\\\Downloads\\\\Sans titre (8).png\");\r\n        imageView1 = new ImageView(image1);\r\n        imageView2 = new ImageView(image2);\r\n        imageView3 = new ImageView(image3);\r\n        imageView1.setFitWidth(30);\r\n        imageView1.setFitHeight(30);\r\n        imageView2.setFitWidth(40);\r\n        imageView2.setFitHeight(40);\r\n        imageView3.setFitWidth(40);\r\n        imageView3.setFitHeight(40);\r\n        this.getChildren().addAll(imageView1, imageView2, imageView3);\r\n        this.setHeight(100);\r\n        this.setWidth(1000);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/messageapplication/UI/BottomNavigation.java b/src/main/java/com/example/messageapplication/UI/BottomNavigation.java
+--- a/src/main/java/com/example/messageapplication/UI/BottomNavigation.java	(revision ebde3e700272480091f0018ad8bf87695bf5fe6a)
++++ b/src/main/java/com/example/messageapplication/UI/BottomNavigation.java	(date 1679836250393)
+@@ -19,9 +19,9 @@
+         this.setAlignment(Pos.CENTER);
+         this.setSpacing(300);
+         this.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, new CornerRadii(0), Insets.EMPTY)));
+-        Image image1 = new Image("C:\\Users\\ASUS\\Downloads\\Sans titre (8).png");
+-        Image image2 = new Image("C:\\Users\\ASUS\\Downloads\\Sans titre (8).png");
+-        Image image3 = new Image("C:\\Users\\ASUS\\Downloads\\Sans titre (8).png");
++        Image image1 = new Image("comments.png");
++        Image image2 = new Image("friend-request.png");
++        Image image3 = new Image("users.png");
+         imageView1 = new ImageView(image1);
+         imageView2 = new ImageView(image2);
+         imageView3 = new ImageView(image3);
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"9c1dcd2c-7abe-4814-ab36-87dd28963934\" name=\"Changes\" comment=\"first commit\">\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/resources/plogo.png\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/example/messageapplication/UI/BottomNavigation.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/com/example/messageapplication/UI/BottomNavigation.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/example/messageapplication/UI/SignInParent.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/com/example/messageapplication/UI/SignInParent.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2NIWUIByATTkUQ9O7qjfOgiIW3j\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/ASUS/IdeaProjects/Message-Application/src/main/resources&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.annotationProcessors&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\ASUS\\IdeaProjects\\Message-Application\\src\\main\\resources\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\ASUS\\Documents\\Message-Application\\src\\main\\resources\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"9c1dcd2c-7abe-4814-ab36-87dd28963934\" name=\"Changes\" comment=\"\" />\r\n      <created>1679352093219</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1679352093219</updated>\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand />\r\n    <select />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision ebde3e700272480091f0018ad8bf87695bf5fe6a)
++++ b/.idea/workspace.xml	(date 1679836279263)
+@@ -5,10 +5,10 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="9c1dcd2c-7abe-4814-ab36-87dd28963934" name="Changes" comment="first commit">
+-      <change afterPath="$PROJECT_DIR$/src/main/resources/plogo.png" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/messageapplication/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/messageapplication/HelloApplication.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/messageapplication/UI/BottomNavigation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/messageapplication/UI/BottomNavigation.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/messageapplication/UI/SignInParent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/messageapplication/UI/SignInParent.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/comments (1).png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/comments.png" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -33,19 +33,20 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;last_opened_file_path&quot;: &quot;C:/Users/ASUS/IdeaProjects/Message-Application/src/main/resources&quot;,
+-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+-    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
+-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.annotationProcessors&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "RunOnceActivity.OpenProjectViewOnStart": "true",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "last_opened_file_path": "C:/Users/ASUS/Documents/Message-Application/src/main/resources",
++    "project.structure.last.edited": "Project",
++    "project.structure.proportion": "0.17",
++    "project.structure.side.proportion": "0.0",
++    "settings.editor.selected.configurable": "reference.projectsettings.compiler.annotationProcessors"
+   }
+-}</component>
++}]]></component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
++      <recent name="C:\Users\ASUS\Documents\Message-Application\src\main\resources" />
+       <recent name="C:\Users\ASUS\IdeaProjects\Message-Application\src\main\resources" />
+     </key>
+     <key name="MoveFile.RECENT_KEYS">
