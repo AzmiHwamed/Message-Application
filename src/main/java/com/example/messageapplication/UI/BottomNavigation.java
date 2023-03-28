@@ -1,13 +1,22 @@
 package com.example.messageapplication.UI;
 
 
+import com.example.messageapplication.Controllers.AllUsersController;
+import com.example.messageapplication.Controllers.FriendReqController;
+import com.example.messageapplication.Controllers.MessagingController;
+import com.example.messageapplication.Navigator.Navigator;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+
+import java.io.IOException;
+import java.sql.SQLException;
 
 public class BottomNavigation extends HBox {
     public ImageView imageView1;
@@ -24,7 +33,7 @@ public class BottomNavigation extends HBox {
         Image image2 = new Image("friend-request.png");
         Image image3 = new Image("users.png");
 
-        image1 = new Image("C:\\Users\\ASUS\\IdeaProjects\\Message-Application\\src\\main\\resources\\comments (1).png");
+        image1 = new Image("C:\\Users\\ASUS\\IdeaProjects\\Message-Application\\src\\main\\resources\\comments.png");
        image2 = new Image("C:\\Users\\ASUS\\IdeaProjects\\Message-Application\\src\\main\\resources\\friend-request.png");
         image3 = new Image("C:\\Users\\ASUS\\IdeaProjects\\Message-Application\\src\\main\\resources\\users.png");
 
@@ -49,8 +58,47 @@ public class BottomNavigation extends HBox {
         imageView1.setCursor(Cursor.HAND);
         imageView2.setCursor(Cursor.HAND);
         imageView3.setCursor(Cursor.HAND);
+        imageView1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
 
-        this.getChildren().addAll(imageView1, imageView2, imageView3);
+                try {
+                    MessagingParent.obj.call();
+                    Navigator.getInstance().showScene("messaging");
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+        imageView2.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                try {
+                    FriendReqController.onCreate();
+                    Navigator.getInstance().showScene("fr");
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+
+
+            }
+        });
+        imageView3.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                try {
+                    AllUsersController.onCreate();
+                    Navigator.getInstance().showScene("users");
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+
+            }
+        });
+
+        //this.getChildren().addAll(imageView1, imageView2, imageView3);
 
         this.setHeight(100);
         this.setWidth(1000);

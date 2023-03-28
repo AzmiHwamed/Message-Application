@@ -1,11 +1,18 @@
 package com.example.messageapplication.UI;
 
 
+import com.example.messageapplication.Controllers.MessagingController;
+import com.example.messageapplication.Controllers.SignInController;
+import com.example.messageapplication.Controllers.SignUpController;
+import com.example.messageapplication.Navigator.Navigator;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -20,7 +27,7 @@ import java.io.FileNotFoundException;
 
 public class SignUpParent extends BorderPane {
     public TextField email;
-    public TextField password;
+    public PasswordField password;
     public TextField username;
     public ComboBox language;
     public HBox avatar;
@@ -38,30 +45,30 @@ public class SignUpParent extends BorderPane {
     public Text choose_avatar;
 
     String[] imagePaths = {
-            "C:\\Users\\ASUS\\Documents\\Message-Application\\src\\main\\resources\\1.png",
-            "C:\\Users\\ASUS\\Documents\\Message-Application\\src\\main\\resources\\2.png",
-            "C:\\Users\\ASUS\\Documents\\Message-Application\\src\\main\\resources\\3.png",
-            "C:\\Users\\ASUS\\Documents\\Message-Application\\src\\main\\resources\\4.png",
-            "C:\\Users\\ASUS\\Documents\\Message-Application\\src\\main\\resources\\5.png",
-            "C:\\Users\\ASUS\\Documents\\Message-Application\\src\\main\\resources\\6.png",
-            "C:\\Users\\ASUS\\Documents\\Message-Application\\src\\main\\resources\\7.png",
-            "C:\\Users\\ASUS\\Documents\\Message-Application\\src\\main\\resources\\8.png",
-            "C:\\Users\\ASUS\\Documents\\Message-Application\\src\\main\\resources\\9.png",
+            "C:\\Users\\ASUS\\IdeaProjects\\Message-Application\\src\\main\\resources\\1.png",
+            "C:\\Users\\ASUS\\IdeaProjects\\Message-Application\\src\\main\\resources\\2.png",
+            "C:\\Users\\ASUS\\IdeaProjects\\Message-Application\\src\\main\\resources\\3.png",
+            "C:\\Users\\ASUS\\IdeaProjects\\Message-Application\\src\\main\\resources\\4.png",
+            "C:\\Users\\ASUS\\IdeaProjects\\Message-Application\\src\\main\\resources\\5.png",
+            "C:\\Users\\ASUS\\IdeaProjects\\Message-Application\\src\\main\\resources\\6.png",
+            "C:\\Users\\ASUS\\IdeaProjects\\Message-Application\\src\\main\\resources\\7.png",
+            "C:\\Users\\ASUS\\IdeaProjects\\Message-Application\\src\\main\\resources\\8.png",
+            "C:\\Users\\ASUS\\IdeaProjects\\Message-Application\\src\\main\\resources\\9.png",
 
     };
-    ToggleGroup toggleGroup;
+    public ToggleGroup toggleGroup;
     public SignUpParent() {
         email=new TextField();
         email.setPromptText("E_mail");
         email.setPrefHeight(40);
-        password=new TextField();
+        password=new PasswordField();
         password.setPrefHeight(40);
         password.setPromptText("password");
         username=new TextField();
         username.setPromptText("UserName");
         username.setPrefHeight(40);
         language=new ComboBox();
-        language.getItems().addAll("FR","ANG","ESP");
+        language.getItems().addAll("en","en","es");
         language.setPromptText("Select your native language");
         language.setPrefHeight(40);
         avatar=new HBox();
@@ -96,7 +103,14 @@ public class SignUpParent extends BorderPane {
         logo.setFitWidth(300);
         t1=new Text("Already have an account? ");
         t2=new Text("Sign in ");
+        t2.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                Navigator.getInstance().showScene("signin");
+            }
+        });
         t2.setFill(Color.web("#6087EB"));
+        t2.setCursor(Cursor.HAND);
         t3=new Text("now ");
         txt=new TextFlow(t1,t2,t3);
         choose_avatar=new Text("Choose your Avatar : ");
@@ -105,11 +119,14 @@ public class SignUpParent extends BorderPane {
         sign_up.setGraphic(txt);
         btn_box=new VBox();
         btn_box.setSpacing(30);
+        signup.setOnAction(new SignUpController(this));
         btn_box.getChildren().addAll(signup,sign_up);
         btn_box.setAlignment(Pos.CENTER);
         vsign_up.getChildren().addAll(logo,email,username,password,language,choose_avatar,avatar,btn_box);
 
         this.setCenter(vsign_up);
+        this.setMinSize(1200,700);
+        this.setMaxSize(1200,700);
         //this.setBottom(new BottomNavigation());
 
     }

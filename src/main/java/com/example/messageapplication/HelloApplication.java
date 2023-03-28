@@ -17,13 +17,12 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException, SQLException {
         stage.setResizable(false);
         Navigator.getInstance().setStage(stage);
-        Navigator.getInstance().addScene("scene",new FriendReqScene());
-        Navigator.getInstance().showScene("scene");
-
         Navigator.getInstance().addScene("signin",new SignInScene());
         Navigator.getInstance().addScene("messaging",new MessagingScene());
-        Navigator.getInstance().showScene("signin");
-
+        Navigator.getInstance().addScene("signup",new SignUpScene());
+        Navigator.getInstance().addScene("users",new UsersParentScene());
+        Navigator.getInstance().addScene("fr",new FriendReqScene());
+        Navigator.getInstance().showScene("signup");
         stage.show();
     }
 

@@ -6,7 +6,6 @@ import com.example.messageapplication.Models.Message;
 import java.io.IOException;
 
 import com.example.messageapplication.Translator.Translator;
-import com.google.api.GoogleAPIException;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -40,6 +39,7 @@ public class ClientHandler implements Runnable{
             try{
                 messageFromClient=(Message)bufferedReader.readObject();
                 brodcastMessage(messageFromClient);
+                DAO.getInstance().sendMessage(messageFromClient);
             }catch (IOException e){
                 closeEverything(socket,bufferedReader,bufferedWriter);
                 break;
@@ -62,9 +62,7 @@ public class ClientHandler implements Runnable{
 
             }catch (IOException e){
                 closeEverything(socket,bufferedReader,bufferedWriter);
-            } catch (GoogleAPIException e) {
-                throw new RuntimeException(e);
-            } catch (SQLException e) {
+            }  catch (SQLException e) {
                 throw new RuntimeException(e);
             } catch (Exception e) {
                 throw new RuntimeException(e);

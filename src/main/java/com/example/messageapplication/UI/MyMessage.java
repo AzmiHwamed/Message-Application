@@ -11,18 +11,15 @@ import javafx.scene.text.Text;
 public class MyMessage extends HBox {
     public MyMessage(String msg) {
         Label Msg=new Label(msg);
-        this.setStyle("-fx-padding: 0;" + "-fx-border-style: solid inside;"
-                + "-fx-border-width: 1;" + "-fx-border-insets: 5;"
-                + "-fx-border-radius: 10;" + "-fx-border-color: black;");
-        Msg.setBackground(Background.fill(Paint.valueOf("#6087EB")));
+        this.setStyle("-fx-padding: 10;" + "-fx-border-width: 1;" + "-fx-border-radius: 5;" + "-fx-background-color: white;"+"-fx-border-color: #6087EB;");
+        Msg.setBackground(Background.fill(Paint.valueOf("#FFFFFF")));
         Msg.setPrefWidth(1000);
-        Msg.setAlignment(Pos.BASELINE_RIGHT);
+        Msg.setAlignment(Pos.CENTER_RIGHT);
         Msg.setPrefHeight(60);
         this.setPrefHeight(60);
         this.setPrefWidth(500);
         this.getChildren().add(Msg);
         //this.setBackground(Background.fill(Paint.valueOf("#6087EB")));
-        this.setBackground(Background.fill(Paint.valueOf("#f4f4f4")));
         this.setAlignment(Pos.CENTER_RIGHT);
     }
 }

@@ -1,65 +1,36 @@
 package com.example.messageapplication.Translator;
 
+import com.example.messageapplication.Models.Root;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
 public class Translator {
-    // TODO: If you have your own Premium account credentials, put them down here:
-    private static final String CLIENT_ID = "FREE_TRIAL_ACCOUNT";
-    private static final String CLIENT_SECRET = "PUBLIC_SECRET";
-    private static final String ENDPOINT = "http://api.whatsmate.net/v1/translation/translate";
-
-    /**
-     * Entry Point
-     */
-
-    /**
-     * Sends out a WhatsApp message via WhatsMate WA Gateway.
-     */
     public static String translate(String fromLang, String toLang, String text) throws Exception {
-        // TODO: Should have used a 3rd party library to make a JSON string from an object
-        String jsonPayload = new StringBuilder()
-                .append("{")
-                .append("\"fromLang\":\"")
-                .append(fromLang)
-                .append("\",")
-                .append("\"toLang\":\"")
-                .append(toLang)
-                .append("\",")
-                .append("\"text\":\"")
-                .append(text)
-                .append("\"")
-                .append("}")
-                .toString();
-
-        URL url = new URL(ENDPOINT);
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setDoOutput(true);
-        conn.setRequestMethod("POST");
-        conn.setRequestProperty("X-WM-CLIENT-ID", CLIENT_ID);
-        conn.setRequestProperty("X-WM-CLIENT-SECRET", CLIENT_SECRET);
-        conn.setRequestProperty("Content-Type", "application/json");
-
-        OutputStream os = conn.getOutputStream();
-        os.write(jsonPayload.getBytes());
-        os.flush();
-        os.close();
-
-        int statusCode = conn.getResponseCode();
-        BufferedReader br = new BufferedReader(new InputStreamReader(
-                (statusCode == 200) ? conn.getInputStream() : conn.getErrorStream()
-        ));
-        String output;
-        String x="";
-        while ((output = br.readLine()) != null) {
-            System.out.println(output);
-            x=output;
-        }
-        conn.disconnect();
-        return x;
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://microsoft-translator-text.p.rapidapi.com/translate?to%5B0%5D="+toLang+"&api-version=3.0&profanityAction=NoAction&textType=plain"))
+                .header("content-type", "application/json")
+                .header("X-RapidAPI-Key", "317452c237mshfeed0a0ac43e9c5p14da22jsn6762b69b5444")
+                .header("X-RapidAPI-Host", "microsoft-translator-text.p.rapidapi.com")
+                .method("POST", HttpRequest.BodyPublishers.ofString("[\r {\r\"Text\": \""+text+"\"\r}\r]"))
+                .build();
+        HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        Gson gson = new Gson();
+        JsonParser parser = new JsonParser();
+        JsonArray object = (JsonArray) parser.parse(response.body().toString());
+        Root emp[] = gson.fromJson(object, Root[].class);
+        return emp[0].translations.get(0).text;
     }
 
 }

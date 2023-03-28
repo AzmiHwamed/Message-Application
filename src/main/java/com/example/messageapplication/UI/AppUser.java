@@ -12,7 +12,7 @@ import javafx.scene.text.Text;
 
 public class AppUser extends HBox {
     Image av_user;
-    ImageView av_im;
+    public ImageView av_im;
    public Text username;
    public Image add;
    public ImageView im_add;

@@ -1,4 +1,5 @@
 package com.example.messageapplication.UI;
+import com.example.messageapplication.Controllers.AllUsersController;
 import com.example.messageapplication.Models.User;
 import javafx.geometry.Insets;
 import javafx.scene.control.ScrollPane;
@@ -10,15 +11,18 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
+import java.sql.SQLException;
+
 public class UsersParent extends BorderPane {
-        VBox users;
+        public VBox users;
     Image search_im;
     ImageView search_view;
     TextField search_box;
     HBox search;
     ScrollPane scrollPane ;
-    public UsersParent()
-    {
+    public UsersParent() throws SQLException {
+        this.setMinSize(1200,700);
+        this.setMaxSize(1200,700);
         search=new HBox();
         search.setSpacing(10);
         search_im=new Image("search.png");
@@ -36,12 +40,15 @@ public class UsersParent extends BorderPane {
         users=new VBox();
         users.setSpacing(20);
         users.setPadding(new Insets(30));
-        users.getChildren().addAll(new AppUser(),new AppUser(),new AppUser(),new AppUser());
+        users.getChildren().addAll(new AppUser(),new AppUser(),new AppUser(),new AppUser(),new AppUser(),new AppUser(),new AppUser(),new AppUser(),new AppUser(),new AppUser(),new AppUser(),new AppUser());
         scrollPane.setContent(users);
         scrollPane.setFitToWidth(true);
         this.setTop(search);
-        this.setCenter(users);
+        ScrollPane x=new ScrollPane(users);
+        x.setFitToWidth(true);
+        this.setCenter(x);
         this.setBottom(new BottomNavigation());
+        new AllUsersController(this).onCreate();
 
     }
 }

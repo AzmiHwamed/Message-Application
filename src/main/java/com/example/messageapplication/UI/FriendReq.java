@@ -10,7 +10,7 @@ import javafx.scene.text.Text;
 
 public class FriendReq extends HBox {
     Image av_user;
-    ImageView av_im;
+    public ImageView av_im;
     public Text username;
     public Image accept;
     public ImageView im_accept;
