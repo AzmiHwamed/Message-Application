@@ -1,7 +1,7 @@
 package com.example.messageapplication.Models;
 
-public class CurrentUser {
-    static User curr=new User(0,"","","","",1);
+public class CurrentChatBuddy {
+    static User curr;
     public static User GetCurrentUser(){
         return curr;
     }

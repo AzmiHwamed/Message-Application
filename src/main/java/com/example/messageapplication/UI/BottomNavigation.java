@@ -3,6 +3,7 @@ package com.example.messageapplication.UI;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -18,9 +19,15 @@ public class BottomNavigation extends HBox {
         this.setPadding(new Insets(10));
         this.setAlignment(Pos.CENTER);
         this.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, new CornerRadii(0), Insets.EMPTY)));
+
         Image image1 = new Image("comments.png");
         Image image2 = new Image("friend-request.png");
         Image image3 = new Image("users.png");
+
+        image1 = new Image("C:\\Users\\ASUS\\IdeaProjects\\Message-Application\\src\\main\\resources\\comments (1).png");
+       image2 = new Image("C:\\Users\\ASUS\\IdeaProjects\\Message-Application\\src\\main\\resources\\friend-request.png");
+        image3 = new Image("C:\\Users\\ASUS\\IdeaProjects\\Message-Application\\src\\main\\resources\\users.png");
+
         imageView1 = new ImageView(image1);
         imageView2 = new ImageView(image2);
         imageView3 = new ImageView(image3);
@@ -30,6 +37,7 @@ public class BottomNavigation extends HBox {
         imageView2.setFitHeight(40);
         imageView3.setFitWidth(40);
         imageView3.setFitHeight(40);
+
         sp1 = new Region();
         this.setHgrow(sp1, Priority.ALWAYS);
 
@@ -37,6 +45,13 @@ public class BottomNavigation extends HBox {
         this.setHgrow(sp2, Priority.ALWAYS);
 
         this.getChildren().addAll(imageView1,sp1, imageView2,sp2, imageView3);
+
+        imageView1.setCursor(Cursor.HAND);
+        imageView2.setCursor(Cursor.HAND);
+        imageView3.setCursor(Cursor.HAND);
+
+        this.getChildren().addAll(imageView1, imageView2, imageView3);
+
         this.setHeight(100);
         this.setWidth(1000);
         this.setPadding(new Insets(10,90,10,90));

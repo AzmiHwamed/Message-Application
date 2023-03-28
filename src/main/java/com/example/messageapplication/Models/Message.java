@@ -1,49 +1,18 @@
 package com.example.messageapplication.Models;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Message {
-    int Sender;
-    int Reciever;
-    Date date;
-    String Content;
+public class Message implements Serializable {
+    public String Reciever;
+    public String Sender;
+    public String date;
+    public String message;
 
-    public void setSender(int sender) {
-        Sender = sender;
-    }
-
-    public void setReciever(int reciever) {
-        Reciever = reciever;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public void setContent(String content) {
-        Content = content;
-    }
-
-    public int getSender() {
-        return Sender;
-    }
-
-    public int getReciever() {
-        return Reciever;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public String getContent() {
-        return Content;
-    }
-
-    public Message(int sender, int reciever, Date date, String content) {
-        Sender = sender;
-        Reciever = reciever;
-        this.date = date;
-        Content = content;
+    public Message(String UserName,String targetUserName, String date,String message) {
+        Reciever = targetUserName;
+        this.date=date;
+        this.Sender=UserName;
+        this.message = message;
     }
 }
